@@ -1,0 +1,157 @@
+/* Zeddig HACCP — site vitrine. Direction : le registre rempli au stylo bille et le tampon de l'inspecteur. */
+
+@font-face {
+  font-family: 'Archivo'; font-style: normal; font-display: block;
+  font-weight: 100 900; font-stretch: 62% 125%;
+  src: url('fonts/archivo-latin-wdth-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Archivo'; font-style: normal; font-display: block;
+  font-weight: 100 900; font-stretch: 62% 125%;
+  src: url('fonts/archivo-latin-ext-wdth-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  --stylo: #1A2B6D;
+  --tampon: #4A3B8F;
+  --conforme: #006233;
+  --alerte: #C8102E;
+  --papier: #FFFFFF;
+  --ligne: #BFD3EA;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--papier);
+  color: var(--stylo);
+  font-family: 'Archivo', sans-serif;
+  font-stretch: 100%;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body { font-size: 17px; line-height: 1.5; }
+
+a { color: var(--stylo); }
+
+img { display: block; max-width: 100%; }
+
+.registre {
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--pas, 36px) - 1px), var(--ligne) calc(var(--pas, 36px) - 1px), var(--ligne) var(--pas, 36px));
+}
+
+.large { font-stretch: 125%; font-weight: 800; letter-spacing: -0.01em; }
+
+h1, h2, h3 { font-stretch: 125%; font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; }
+
+h1 { font-size: 1.7rem; margin: 0.7em 0 0.4em; }
+h2 { font-size: 1.4rem; margin-bottom: 0.6em; }
+h3 { font-size: 1.15rem; margin-bottom: 0.3em; }
+
+p { max-width: 36em; }
+
+/* Marque */
+.marque { font-stretch: 125%; font-weight: 900; letter-spacing: -0.03em; color: var(--stylo); line-height: 1; font-size: 1.6rem; }
+.marque .point { color: var(--conforme); }
+
+/* Le tampon — le seul geste de la page */
+.tampon {
+  display: inline-block; color: var(--tampon);
+  border: 0.09em solid var(--tampon); border-radius: 0.16em;
+  outline: 0.03em solid var(--tampon); outline-offset: -0.2em;
+  padding: 0.18em 0.42em 0.14em;
+  font-stretch: 125%; font-weight: 900; letter-spacing: 0.06em; line-height: 1; text-transform: uppercase;
+  transform: rotate(-9deg);
+  filter: url(#encre); mix-blend-mode: multiply; opacity: 0.92;
+  font-size: 0.95rem;
+}
+.tampon small { display: block; font-size: 0.24em; letter-spacing: 0.12em; font-weight: 700; text-align: center; margin-top: 0.35em; }
+
+/* Téléphone : cadre simple */
+.tel { width: var(--l, 280px); aspect-ratio: 1236 / 2580; border: calc(var(--l, 280px) * 0.035) solid var(--stylo); border-radius: calc(var(--l, 280px) * 0.12); overflow: hidden; background: #fff; box-sizing: content-box; margin: 0 auto 0.8em; }
+.tel img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+.source { font-size: 0.85rem; color: #4b5a8c; text-align: center; margin-top: 0.6em; }
+
+.vert { color: var(--conforme); }
+.rouge { color: var(--alerte); }
+
+/* Mise en page générale */
+main, header, footer { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+section { padding: 2.6em 0; }
+
+/* En-tête */
+.entete { padding-top: 1.8em; padding-bottom: 2.2em; }
+.entete-haut { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8em; margin-bottom: 1em; }
+
+.chapeau { font-size: 1.05rem; margin-bottom: 0.6em; }
+
+.azul { font-size: 0.95rem; color: var(--tampon); margin-bottom: 1.2em; }
+
+.entete-boutons { display: flex; flex-wrap: wrap; gap: 0.8em; }
+
+.bouton {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 0.6em 1.3em;
+  text-decoration: none; border-radius: 6px;
+  font-stretch: 125%; font-weight: 800; font-size: 1rem;
+  border: 2px solid var(--stylo);
+}
+.bouton-principal { background: var(--stylo); color: #fff; }
+.bouton-secondaire { background: transparent; color: var(--stylo); }
+
+.bouton:focus-visible, a:focus-visible, .lien-secondaire:focus-visible {
+  outline: 3px solid var(--tampon); outline-offset: 2px;
+}
+
+/* Vidéo */
+.section-video { text-align: center; }
+.video { width: 100%; max-width: 960px; border-radius: 10px; display: block; margin: 0 auto; background: #000; }
+
+/* Gestes */
+.section-gestes { text-align: center; }
+.gestes { display: grid; grid-template-columns: 1fr; gap: 2.2em; margin: 1.4em 0; }
+@media (min-width: 720px) {
+  .gestes { grid-template-columns: repeat(3, 1fr); }
+}
+.geste figcaption { font-size: 0.98rem; }
+.geste-mot { display: block; font-size: 1.1rem; margin-bottom: 0.2em; }
+
+.risque { margin: 1.4em auto 0; font-size: 0.92rem; text-align: left; }
+
+/* Offres */
+.offres { display: grid; grid-template-columns: 1fr; gap: 1.4em; margin: 1.4em 0; }
+@media (min-width: 720px) {
+  .offres { grid-template-columns: repeat(3, 1fr); }
+}
+.offre { border: 2px solid var(--ligne); border-radius: 8px; padding: 1.2em 1.3em; }
+.offre:nth-child(3) { border-color: var(--tampon); }
+.offre-note { font-size: 0.9rem; color: #4b5a8c; margin-bottom: 0.7em; }
+.offre ul { padding-left: 1.2em; }
+.offre li { margin-bottom: 0.35em; }
+
+.offre-ligne { margin-top: 1em; font-size: 0.92rem; color: #4b5a8c; }
+.offre-cle-en-main { margin-top: 1em; }
+
+/* Contact */
+.section-contact { text-align: center; }
+.section-contact p { margin: 0 auto; }
+.section-contact .bouton { margin: 1em 0; }
+.email-clair { margin-top: 0.3em; font-size: 0.95rem; }
+.lien-secondaire { display: inline-block; margin-top: 1.2em; text-decoration: underline; }
+
+/* Pied */
+.pied { text-align: center; padding: 2em 20px; font-size: 0.85rem; color: #4b5a8c; }
+.pied p { margin: 0 auto 0.2em; max-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* Téléphones des captures : plus petits sur mobile pour ne pas allonger la page. */
+:root { --tel-l: 280px; }
+@media (max-width: 640px) { :root { --tel-l: 170px; } }
